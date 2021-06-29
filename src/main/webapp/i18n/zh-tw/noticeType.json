@@ -1,0 +1,10 @@
+{
+  "churchApp": {
+    "NoticeType": {
+      "null": "",
+      "TRAINING": "TRAINING",
+      "PRAYER": "PRAYER",
+      "GOSPEL": "GOSPEL"
+    }
+  }
+}

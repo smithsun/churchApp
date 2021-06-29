@@ -42,6 +42,8 @@
     "jwtSecretKey": "ODM0OWYzOTI0YTA5MWQzNjM4MTJlMTlkZDZjOGE2ZjJiNjMxODVkNWUxYmQ3ZGQ3M2I0NzdjMTI4ZDQxNDQ3ZjdhZmM0ZTQyMTE2ZDYxODMxYWM0NThlMDI4NDllMmQ2MDYxNTBiMjIwYzViYjdmMjNlYmNjYzg1NTJkOTZlODk=",
     "devServerPort": 9060,
     "clientPackageManager": "npm",
-    "languages": ["zh-tw"]
+    "languages": ["zh-tw"],
+    "entities": ["Friends", "Publication", "Digests", "PublicNotice", "Videos"],
+    "lastLiquibaseTimestamp": 1624873644000
   }
 }

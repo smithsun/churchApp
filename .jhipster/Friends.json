@@ -1,0 +1,38 @@
+{
+  "name": "Friends",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cellPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastUsedTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "intimacyOrder",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "friends",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210628094720"
+}

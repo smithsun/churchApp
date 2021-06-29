@@ -1,0 +1,67 @@
+{
+  "name": "Publication",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastUpdateBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orgSignature",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "digests",
+      "otherEntityRelationshipName": "publication",
+      "relationshipName": "digests",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "publicNotice",
+      "otherEntityRelationshipName": "publication",
+      "relationshipName": "publicNotice",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "videos",
+      "otherEntityRelationshipName": "publication",
+      "relationshipName": "videos",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "publication",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210628094721"
+}

@@ -1,0 +1,86 @@
+
+
+entity Friends {
+	name String required
+    lastName String required
+    cellPhone String
+    lastUsedTime ZonedDateTime
+    intimacyOrder Long
+}
+
+entity Publication {
+    type String required
+    startDate ZonedDateTime
+    endDate ZonedDateTime
+    priority Long
+    createdBy String
+    lastUpdateBy String
+    orgSignature String
+}
+
+
+ 
+entity Digests {
+	title String required
+	type DigestType required
+	content Blob required
+	lastUpdateBy String
+    status String
+    eventDate ZonedDateTime
+}
+
+
+
+
+entity PublicNotice {
+	title String required
+	type NoticeType required
+	content String required
+	lastUpdateBy String
+    status String
+    eventDate ZonedDateTime
+}
+
+enum NoticeType {
+    TRAINING, PRAYER, GOSPEL
+}
+
+enum DigestType {
+    NEWBELIVER ("初信"), 
+    SERVICEONE ("事奉"), 
+    GENERAL ("一般")
+}
+
+
+entity Videos {
+	title String
+	type String
+	content String
+    notes String
+    keyWords String
+	lastUpdateBy String
+    status String
+    eventDate ZonedDateTime
+}
+
+
+relationship OneToOne {
+	 Digests to Publication
+     PublicNotice  to Publication
+     Videos  to Publication
+}
+
+
+// Set pagination options
+paginate Digests, Publication with infinite-scroll
+paginate Friends with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

@@ -46,6 +46,11 @@ public class CacheConfiguration {
             createCache(cm, daily_digest.domain.User.class.getName());
             createCache(cm, daily_digest.domain.Authority.class.getName());
             createCache(cm, daily_digest.domain.User.class.getName() + ".authorities");
+            createCache(cm, daily_digest.domain.Friends.class.getName());
+            createCache(cm, daily_digest.domain.Publication.class.getName());
+            createCache(cm, daily_digest.domain.Digests.class.getName());
+            createCache(cm, daily_digest.domain.PublicNotice.class.getName());
+            createCache(cm, daily_digest.domain.Videos.class.getName());
             // jhipster-needle-caffeine-add-entry
         };
     }

@@ -1,0 +1,32 @@
+{
+  "churchApp": {
+    "videos": {
+      "home": {
+        "title": "Videos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "建立一筆新的 Videos",
+        "createOrEditLabel": "建立或編輯 Videos",
+        "notFound": "No Videos found"
+      },
+      "created": "新的 Videos 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Videos 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Videos 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Videos {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Videos"
+      },
+      "id": "ID",
+      "title": "Title",
+      "type": "Type",
+      "content": "Content",
+      "notes": "Notes",
+      "keyWords": "Key Words",
+      "lastUpdateBy": "Last Update By",
+      "status": "Status",
+      "eventDate": "Event Date",
+      "publication": "Publication"
+    }
+  }
+}

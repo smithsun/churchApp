@@ -1,0 +1,10 @@
+{
+  "churchApp": {
+    "PublicationType": {
+      "null": "",
+      "DRAFT": "DRAFT",
+      "ONLINE": "ONLINE",
+      "OFFLINE": "OFFLINE"
+    }
+  }
+}

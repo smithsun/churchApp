@@ -1,0 +1,28 @@
+{
+  "churchApp": {
+    "friends": {
+      "home": {
+        "title": "Friends",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "建立一筆新的 Friends",
+        "createOrEditLabel": "建立或編輯 Friends",
+        "notFound": "No Friends found"
+      },
+      "created": "新的 Friends 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Friends 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Friends 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Friends {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Friends"
+      },
+      "id": "ID",
+      "name": "Name",
+      "lastName": "Last Name",
+      "cellPhone": "Cell Phone",
+      "lastUsedTime": "Last Used Time",
+      "intimacyOrder": "Intimacy Order"
+    }
+  }
+}
