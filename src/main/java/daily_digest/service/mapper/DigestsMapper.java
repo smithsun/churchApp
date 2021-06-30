@@ -11,4 +11,9 @@ import org.mapstruct.*;
 public interface DigestsMapper extends EntityMapper<DigestsDTO, Digests> {
     @Mapping(target = "publication", source = "publication", qualifiedByName = "id")
     DigestsDTO toDto(Digests s);
+
+    @Named("id")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    DigestsDTO toDtoId(Digests digests);
 }

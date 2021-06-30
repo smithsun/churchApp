@@ -16,4 +16,8 @@ import '@/shared/config/dayjs';
     'jhi-footer': JhiFooter,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public get authenticated(): boolean {
+    return this.$store.getters.authenticated;
+  }
+}

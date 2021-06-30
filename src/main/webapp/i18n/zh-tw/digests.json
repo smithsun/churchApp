@@ -18,13 +18,16 @@
         "title": "Digests"
       },
       "id": "ID",
-      "title": "Title",
       "type": "Type",
+      "title": "Title",
+      "imgVerse": "Img Verse",
+      "prayReadVerse": "Pray Read Verse",
       "content": "Content",
       "lastUpdateBy": "Last Update By",
       "status": "Status",
       "eventDate": "Event Date",
-      "publication": "Publication"
+      "publication": "Publication",
+      "dailyVerses": "Daily Verses"
     }
   }
 }

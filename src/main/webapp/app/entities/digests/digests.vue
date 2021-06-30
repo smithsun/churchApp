@@ -32,13 +32,21 @@
               <span v-text="$t('global.field.id')">ID</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'id'"></jhi-sort-indicator>
             </th>
+            <th scope="row" v-on:click="changeOrder('type')">
+              <span v-text="$t('churchApp.digests.type')">Type</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'type'"></jhi-sort-indicator>
+            </th>
             <th scope="row" v-on:click="changeOrder('title')">
               <span v-text="$t('churchApp.digests.title')">Title</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'title'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('type')">
-              <span v-text="$t('churchApp.digests.type')">Type</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'type'"></jhi-sort-indicator>
+            <th scope="row" v-on:click="changeOrder('imgVerse')">
+              <span v-text="$t('churchApp.digests.imgVerse')">Img Verse</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'imgVerse'"></jhi-sort-indicator>
+            </th>
+            <th scope="row" v-on:click="changeOrder('prayReadVerse')">
+              <span v-text="$t('churchApp.digests.prayReadVerse')">Pray Read Verse</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'prayReadVerse'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('content')">
               <span v-text="$t('churchApp.digests.content')">Content</span>
@@ -68,14 +76,11 @@
             <td>
               <router-link :to="{ name: 'DigestsView', params: { digestsId: digests.id } }">{{ digests.id }}</router-link>
             </td>
-            <td>{{ digests.title }}</td>
             <td v-text="$t('churchApp.DigestType.' + digests.type)">{{ digests.type }}</td>
-            <td>
-              <a v-if="digests.content" v-on:click="openFile(digests.contentContentType, digests.content)" v-text="$t('entity.action.open')"
-                >open</a
-              >
-              <span v-if="digests.content">{{ digests.contentContentType }}, {{ byteSize(digests.content) }}</span>
-            </td>
+            <td>{{ digests.title }}</td>
+            <td>{{ digests.imgVerse }}</td>
+            <td>{{ digests.prayReadVerse }}</td>
+            <td>{{ digests.content }}</td>
             <td>{{ digests.lastUpdateBy }}</td>
             <td>{{ digests.status }}</td>
             <td>{{ digests.eventDate ? $d(Date.parse(digests.eventDate), 'short') : '' }}</td>

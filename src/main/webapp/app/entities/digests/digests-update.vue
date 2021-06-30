@@ -15,24 +15,6 @@
             <input type="text" class="form-control" id="id" name="id" v-model="digests.id" readonly />
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('churchApp.digests.title')" for="digests-title">Title</label>
-            <input
-              type="text"
-              class="form-control"
-              name="title"
-              id="digests-title"
-              data-cy="title"
-              :class="{ valid: !$v.digests.title.$invalid, invalid: $v.digests.title.$invalid }"
-              v-model="$v.digests.title.$model"
-              required
-            />
-            <div v-if="$v.digests.title.$anyDirty && $v.digests.title.$invalid">
-              <small class="form-text text-danger" v-if="!$v.digests.title.required" v-text="$t('entity.validation.required')">
-                This field is required.
-              </small>
-            </div>
-          </div>
-          <div class="form-group">
             <label class="form-control-label" v-text="$t('churchApp.digests.type')" for="digests-type">Type</label>
             <select
               class="form-control"
@@ -54,35 +36,52 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('churchApp.digests.content')" for="digests-content">Content</label>
-            <div>
-              <div v-if="digests.content" class="form-text text-danger clearfix">
-                <a class="pull-left" v-on:click="openFile(digests.contentContentType, digests.content)" v-text="$t('entity.action.open')"
-                  >open</a
-                ><br />
-                <span class="pull-left">{{ digests.contentContentType }}, {{ byteSize(digests.content) }}</span>
-                <button
-                  type="button"
-                  v-on:click="
-                    digests.content = null;
-                    digests.contentContentType = null;
-                  "
-                  class="btn btn-secondary btn-xs pull-right"
-                >
-                  <font-awesome-icon icon="times"></font-awesome-icon>
-                </button>
-              </div>
-              <input
-                type="file"
-                ref="file_content"
-                id="file_content"
-                data-cy="content"
-                v-on:change="setFileData($event, digests, 'content', false)"
-                v-text="$t('entity.action.addblob')"
-              />
-            </div>
+            <label class="form-control-label" v-text="$t('churchApp.digests.title')" for="digests-title">Title</label>
             <input
-              type="hidden"
+              type="text"
+              class="form-control"
+              name="title"
+              id="digests-title"
+              data-cy="title"
+              :class="{ valid: !$v.digests.title.$invalid, invalid: $v.digests.title.$invalid }"
+              v-model="$v.digests.title.$model"
+              required
+            />
+            <div v-if="$v.digests.title.$anyDirty && $v.digests.title.$invalid">
+              <small class="form-text text-danger" v-if="!$v.digests.title.required" v-text="$t('entity.validation.required')">
+                This field is required.
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('churchApp.digests.imgVerse')" for="digests-imgVerse">Img Verse</label>
+            <input
+              type="text"
+              class="form-control"
+              name="imgVerse"
+              id="digests-imgVerse"
+              data-cy="imgVerse"
+              :class="{ valid: !$v.digests.imgVerse.$invalid, invalid: $v.digests.imgVerse.$invalid }"
+              v-model="$v.digests.imgVerse.$model"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('churchApp.digests.prayReadVerse')" for="digests-prayReadVerse"
+              >Pray Read Verse</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="prayReadVerse"
+              id="digests-prayReadVerse"
+              data-cy="prayReadVerse"
+              :class="{ valid: !$v.digests.prayReadVerse.$invalid, invalid: $v.digests.prayReadVerse.$invalid }"
+              v-model="$v.digests.prayReadVerse.$model"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('churchApp.digests.content')" for="digests-content">Content</label>
+            <textarea
               class="form-control"
               name="content"
               id="digests-content"
@@ -90,14 +89,7 @@
               :class="{ valid: !$v.digests.content.$invalid, invalid: $v.digests.content.$invalid }"
               v-model="$v.digests.content.$model"
               required
-            />
-            <input
-              type="hidden"
-              class="form-control"
-              name="contentContentType"
-              id="digests-contentContentType"
-              v-model="digests.contentContentType"
-            />
+            ></textarea>
             <div v-if="$v.digests.content.$anyDirty && $v.digests.content.$invalid">
               <small class="form-text text-danger" v-if="!$v.digests.content.required" v-text="$t('entity.validation.required')">
                 This field is required.

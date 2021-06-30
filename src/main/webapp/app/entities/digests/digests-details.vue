@@ -7,25 +7,34 @@
         </h2>
         <dl class="row jh-entity-details">
           <dt>
-            <span v-text="$t('churchApp.digests.title')">Title</span>
-          </dt>
-          <dd>
-            <span>{{ digests.title }}</span>
-          </dd>
-          <dt>
             <span v-text="$t('churchApp.digests.type')">Type</span>
           </dt>
           <dd>
             <span v-text="$t('churchApp.DigestType.' + digests.type)">{{ digests.type }}</span>
           </dd>
           <dt>
+            <span v-text="$t('churchApp.digests.title')">Title</span>
+          </dt>
+          <dd>
+            <span>{{ digests.title }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('churchApp.digests.imgVerse')">Img Verse</span>
+          </dt>
+          <dd>
+            <span>{{ digests.imgVerse }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('churchApp.digests.prayReadVerse')">Pray Read Verse</span>
+          </dt>
+          <dd>
+            <span>{{ digests.prayReadVerse }}</span>
+          </dd>
+          <dt>
             <span v-text="$t('churchApp.digests.content')">Content</span>
           </dt>
           <dd>
-            <div v-if="digests.content">
-              <a v-on:click="openFile(digests.contentContentType, digests.content)" v-text="$t('entity.action.open')">open</a>
-              {{ digests.contentContentType }}, {{ byteSize(digests.content) }}
-            </div>
+            <span>{{ digests.content }}</span>
           </dd>
           <dt>
             <span v-text="$t('churchApp.digests.lastUpdateBy')">Last Update By</span>

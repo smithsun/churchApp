@@ -8,6 +8,7 @@ Component.registerHooks([
 import Router from 'vue-router';
 
 const Home = () => import('@/core/home/home.vue');
+const Login = () => import('@/account/login-form/login-form.vue');
 const Error = () => import('@/core/error/error.vue');
 import account from '@/router/account';
 import admin from '@/router/admin';
@@ -18,12 +19,17 @@ Vue.use(Router);
 
 // prettier-ignore
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/forbidden',

@@ -44,7 +44,7 @@ public class Publication implements Serializable {
     @Column(name = "org_signature")
     private String orgSignature;
 
-    @JsonIgnoreProperties(value = { "publication" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "publication", "dailyVerses" }, allowSetters = true)
     @OneToOne(mappedBy = "publication")
     private Digests digests;
 

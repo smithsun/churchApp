@@ -12,6 +12,7 @@
         "digests": "Digests",
         "publicNotice": "Public Notice",
         "videos": "Videos",
+        "dailyVerses": "Daily Verses",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

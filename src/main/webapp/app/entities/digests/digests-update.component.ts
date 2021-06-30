@@ -10,17 +10,22 @@ import { DATE_TIME_LONG_FORMAT } from '@/shared/date/filters';
 import PublicationService from '@/entities/publication/publication.service';
 import { IPublication } from '@/shared/model/publication.model';
 
+import DailyVersesService from '@/entities/daily-verses/daily-verses.service';
+import { IDailyVerses } from '@/shared/model/daily-verses.model';
+
 import { IDigests, Digests } from '@/shared/model/digests.model';
 import DigestsService from './digests.service';
 
 const validations: any = {
   digests: {
-    title: {
-      required,
-    },
     type: {
       required,
     },
+    title: {
+      required,
+    },
+    imgVerse: {},
+    prayReadVerse: {},
     content: {
       required,
     },
@@ -40,6 +45,10 @@ export default class DigestsUpdate extends mixins(JhiDataUtils) {
   @Inject('publicationService') private publicationService: () => PublicationService;
 
   public publications: IPublication[] = [];
+
+  @Inject('dailyVersesService') private dailyVersesService: () => DailyVersesService;
+
+  public dailyVerses: IDailyVerses[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -138,6 +147,11 @@ export default class DigestsUpdate extends mixins(JhiDataUtils) {
       .retrieve()
       .then(res => {
         this.publications = res.data;
+      });
+    this.dailyVersesService()
+      .retrieve()
+      .then(res => {
+        this.dailyVerses = res.data;
       });
   }
 }

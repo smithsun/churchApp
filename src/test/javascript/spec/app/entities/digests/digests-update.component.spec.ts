@@ -13,6 +13,8 @@ import DigestsService from '@/entities/digests/digests.service';
 
 import PublicationService from '@/entities/publication/publication.service';
 
+import DailyVersesService from '@/entities/daily-verses/daily-verses.service';
+
 const localVue = createLocalVue();
 
 config.initVueApp(localVue);
@@ -44,6 +46,8 @@ describe('Component Tests', () => {
           digestsService: () => digestsServiceStub,
 
           publicationService: () => new PublicationService(),
+
+          dailyVersesService: () => new DailyVersesService(),
         },
       });
       comp = wrapper.vm;

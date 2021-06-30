@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ribbon></ribbon>
-    <div id="app-header">
+    <div id="app-header" v-if="authenticated">
       <jhi-navbar></jhi-navbar>
     </div>
     <div class="container-fluid">
@@ -13,7 +13,7 @@
         <login-form></login-form>
       </b-modal>
 
-      <jhi-footer></jhi-footer>
+      <jhi-footer v-if="authenticated"></jhi-footer>
     </div>
   </div>
 </template>

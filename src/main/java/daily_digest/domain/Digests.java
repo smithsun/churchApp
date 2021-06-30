@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import daily_digest.domain.enumeration.DigestType;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -24,20 +26,23 @@ public class Digests implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "title", nullable = false)
-    private String title;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private DigestType type;
 
+    @NotNull
+    @Column(name = "title", nullable = false)
+    private String title;
+
+    @Column(name = "img_verse")
+    private String imgVerse;
+
+    @Column(name = "pray_read_verse")
+    private String prayReadVerse;
+
     @Lob
     @Column(name = "content", nullable = false)
-    private byte[] content;
-
-    @Column(name = "content_content_type", nullable = false)
-    private String contentContentType;
+    private String content;
 
     @Column(name = "last_update_by")
     private String lastUpdateBy;
@@ -53,6 +58,11 @@ public class Digests implements Serializable {
     @JoinColumn(unique = true)
     private Publication publication;
 
+    @OneToMany(mappedBy = "digests")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "digests" }, allowSetters = true)
+    private Set<DailyVerses> dailyVerses = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -65,19 +75,6 @@ public class Digests implements Serializable {
     public Digests id(Long id) {
         this.id = id;
         return this;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public Digests title(String title) {
-        this.title = title;
-        return this;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public DigestType getType() {
@@ -93,30 +90,56 @@ public class Digests implements Serializable {
         this.type = type;
     }
 
-    public byte[] getContent() {
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Digests title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImgVerse() {
+        return this.imgVerse;
+    }
+
+    public Digests imgVerse(String imgVerse) {
+        this.imgVerse = imgVerse;
+        return this;
+    }
+
+    public void setImgVerse(String imgVerse) {
+        this.imgVerse = imgVerse;
+    }
+
+    public String getPrayReadVerse() {
+        return this.prayReadVerse;
+    }
+
+    public Digests prayReadVerse(String prayReadVerse) {
+        this.prayReadVerse = prayReadVerse;
+        return this;
+    }
+
+    public void setPrayReadVerse(String prayReadVerse) {
+        this.prayReadVerse = prayReadVerse;
+    }
+
+    public String getContent() {
         return this.content;
     }
 
-    public Digests content(byte[] content) {
+    public Digests content(String content) {
         this.content = content;
         return this;
     }
 
-    public void setContent(byte[] content) {
+    public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getContentContentType() {
-        return this.contentContentType;
-    }
-
-    public Digests contentContentType(String contentContentType) {
-        this.contentContentType = contentContentType;
-        return this;
-    }
-
-    public void setContentContentType(String contentContentType) {
-        this.contentContentType = contentContentType;
     }
 
     public String getLastUpdateBy() {
@@ -171,6 +194,37 @@ public class Digests implements Serializable {
         this.publication = publication;
     }
 
+    public Set<DailyVerses> getDailyVerses() {
+        return this.dailyVerses;
+    }
+
+    public Digests dailyVerses(Set<DailyVerses> dailyVerses) {
+        this.setDailyVerses(dailyVerses);
+        return this;
+    }
+
+    public Digests addDailyVerses(DailyVerses dailyVerses) {
+        this.dailyVerses.add(dailyVerses);
+        dailyVerses.setDigests(this);
+        return this;
+    }
+
+    public Digests removeDailyVerses(DailyVerses dailyVerses) {
+        this.dailyVerses.remove(dailyVerses);
+        dailyVerses.setDigests(null);
+        return this;
+    }
+
+    public void setDailyVerses(Set<DailyVerses> dailyVerses) {
+        if (this.dailyVerses != null) {
+            this.dailyVerses.forEach(i -> i.setDigests(null));
+        }
+        if (dailyVerses != null) {
+            dailyVerses.forEach(i -> i.setDigests(this));
+        }
+        this.dailyVerses = dailyVerses;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -195,10 +249,11 @@ public class Digests implements Serializable {
     public String toString() {
         return "Digests{" +
             "id=" + getId() +
-            ", title='" + getTitle() + "'" +
             ", type='" + getType() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", imgVerse='" + getImgVerse() + "'" +
+            ", prayReadVerse='" + getPrayReadVerse() + "'" +
             ", content='" + getContent() + "'" +
-            ", contentContentType='" + getContentContentType() + "'" +
             ", lastUpdateBy='" + getLastUpdateBy() + "'" +
             ", status='" + getStatus() + "'" +
             ", eventDate='" + getEventDate() + "'" +

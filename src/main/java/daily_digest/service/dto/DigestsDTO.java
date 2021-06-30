@@ -15,15 +15,18 @@ public class DigestsDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String title;
-
-    @NotNull
     private DigestType type;
 
-    @Lob
-    private byte[] content;
+    @NotNull
+    private String title;
 
-    private String contentContentType;
+    private String imgVerse;
+
+    private String prayReadVerse;
+
+    @Lob
+    private String content;
+
     private String lastUpdateBy;
 
     private String status;
@@ -40,14 +43,6 @@ public class DigestsDTO implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public DigestType getType() {
         return type;
     }
@@ -56,20 +51,36 @@ public class DigestsDTO implements Serializable {
         this.type = type;
     }
 
-    public byte[] getContent() {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImgVerse() {
+        return imgVerse;
+    }
+
+    public void setImgVerse(String imgVerse) {
+        this.imgVerse = imgVerse;
+    }
+
+    public String getPrayReadVerse() {
+        return prayReadVerse;
+    }
+
+    public void setPrayReadVerse(String prayReadVerse) {
+        this.prayReadVerse = prayReadVerse;
+    }
+
+    public String getContent() {
         return content;
     }
 
-    public void setContent(byte[] content) {
+    public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getContentContentType() {
-        return contentContentType;
-    }
-
-    public void setContentContentType(String contentContentType) {
-        this.contentContentType = contentContentType;
     }
 
     public String getLastUpdateBy() {
@@ -130,8 +141,10 @@ public class DigestsDTO implements Serializable {
     public String toString() {
         return "DigestsDTO{" +
             "id=" + getId() +
-            ", title='" + getTitle() + "'" +
             ", type='" + getType() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", imgVerse='" + getImgVerse() + "'" +
+            ", prayReadVerse='" + getPrayReadVerse() + "'" +
             ", content='" + getContent() + "'" +
             ", lastUpdateBy='" + getLastUpdateBy() + "'" +
             ", status='" + getStatus() + "'" +

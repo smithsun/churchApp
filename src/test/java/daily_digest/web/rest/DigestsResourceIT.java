@@ -38,16 +38,20 @@ import org.springframework.util.Base64Utils;
 @WithMockUser
 class DigestsResourceIT {
 
-    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String UPDATED_TITLE = "BBBBBBBBBB";
-
     private static final DigestType DEFAULT_TYPE = DigestType.NEWBELIVER;
     private static final DigestType UPDATED_TYPE = DigestType.SERVICEONE;
 
-    private static final byte[] DEFAULT_CONTENT = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_CONTENT = TestUtil.createByteArray(1, "1");
-    private static final String DEFAULT_CONTENT_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_CONTENT_CONTENT_TYPE = "image/png";
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String UPDATED_TITLE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_IMG_VERSE = "AAAAAAAAAA";
+    private static final String UPDATED_IMG_VERSE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PRAY_READ_VERSE = "AAAAAAAAAA";
+    private static final String UPDATED_PRAY_READ_VERSE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+    private static final String UPDATED_CONTENT = "BBBBBBBBBB";
 
     private static final String DEFAULT_LAST_UPDATE_BY = "AAAAAAAAAA";
     private static final String UPDATED_LAST_UPDATE_BY = "BBBBBBBBBB";
@@ -86,10 +90,11 @@ class DigestsResourceIT {
      */
     public static Digests createEntity(EntityManager em) {
         Digests digests = new Digests()
-            .title(DEFAULT_TITLE)
             .type(DEFAULT_TYPE)
+            .title(DEFAULT_TITLE)
+            .imgVerse(DEFAULT_IMG_VERSE)
+            .prayReadVerse(DEFAULT_PRAY_READ_VERSE)
             .content(DEFAULT_CONTENT)
-            .contentContentType(DEFAULT_CONTENT_CONTENT_TYPE)
             .lastUpdateBy(DEFAULT_LAST_UPDATE_BY)
             .status(DEFAULT_STATUS)
             .eventDate(DEFAULT_EVENT_DATE);
@@ -104,10 +109,11 @@ class DigestsResourceIT {
      */
     public static Digests createUpdatedEntity(EntityManager em) {
         Digests digests = new Digests()
-            .title(UPDATED_TITLE)
             .type(UPDATED_TYPE)
+            .title(UPDATED_TITLE)
+            .imgVerse(UPDATED_IMG_VERSE)
+            .prayReadVerse(UPDATED_PRAY_READ_VERSE)
             .content(UPDATED_CONTENT)
-            .contentContentType(UPDATED_CONTENT_CONTENT_TYPE)
             .lastUpdateBy(UPDATED_LAST_UPDATE_BY)
             .status(UPDATED_STATUS)
             .eventDate(UPDATED_EVENT_DATE);
@@ -133,10 +139,11 @@ class DigestsResourceIT {
         List<Digests> digestsList = digestsRepository.findAll();
         assertThat(digestsList).hasSize(databaseSizeBeforeCreate + 1);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
-        assertThat(testDigests.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testDigests.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testDigests.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testDigests.getImgVerse()).isEqualTo(DEFAULT_IMG_VERSE);
+        assertThat(testDigests.getPrayReadVerse()).isEqualTo(DEFAULT_PRAY_READ_VERSE);
         assertThat(testDigests.getContent()).isEqualTo(DEFAULT_CONTENT);
-        assertThat(testDigests.getContentContentType()).isEqualTo(DEFAULT_CONTENT_CONTENT_TYPE);
         assertThat(testDigests.getLastUpdateBy()).isEqualTo(DEFAULT_LAST_UPDATE_BY);
         assertThat(testDigests.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testDigests.getEventDate()).isEqualTo(DEFAULT_EVENT_DATE);
@@ -163,10 +170,10 @@ class DigestsResourceIT {
 
     @Test
     @Transactional
-    void checkTitleIsRequired() throws Exception {
+    void checkTypeIsRequired() throws Exception {
         int databaseSizeBeforeTest = digestsRepository.findAll().size();
         // set the field null
-        digests.setTitle(null);
+        digests.setType(null);
 
         // Create the Digests, which fails.
         DigestsDTO digestsDTO = digestsMapper.toDto(digests);
@@ -181,10 +188,10 @@ class DigestsResourceIT {
 
     @Test
     @Transactional
-    void checkTypeIsRequired() throws Exception {
+    void checkTitleIsRequired() throws Exception {
         int databaseSizeBeforeTest = digestsRepository.findAll().size();
         // set the field null
-        digests.setType(null);
+        digests.setTitle(null);
 
         // Create the Digests, which fails.
         DigestsDTO digestsDTO = digestsMapper.toDto(digests);
@@ -209,10 +216,11 @@ class DigestsResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(digests.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].contentContentType").value(hasItem(DEFAULT_CONTENT_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].content").value(hasItem(Base64Utils.encodeToString(DEFAULT_CONTENT))))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
+            .andExpect(jsonPath("$.[*].imgVerse").value(hasItem(DEFAULT_IMG_VERSE)))
+            .andExpect(jsonPath("$.[*].prayReadVerse").value(hasItem(DEFAULT_PRAY_READ_VERSE)))
+            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].lastUpdateBy").value(hasItem(DEFAULT_LAST_UPDATE_BY)))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)))
             .andExpect(jsonPath("$.[*].eventDate").value(hasItem(sameInstant(DEFAULT_EVENT_DATE))));
@@ -230,10 +238,11 @@ class DigestsResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(digests.getId().intValue()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
-            .andExpect(jsonPath("$.contentContentType").value(DEFAULT_CONTENT_CONTENT_TYPE))
-            .andExpect(jsonPath("$.content").value(Base64Utils.encodeToString(DEFAULT_CONTENT)))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
+            .andExpect(jsonPath("$.imgVerse").value(DEFAULT_IMG_VERSE))
+            .andExpect(jsonPath("$.prayReadVerse").value(DEFAULT_PRAY_READ_VERSE))
+            .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
             .andExpect(jsonPath("$.lastUpdateBy").value(DEFAULT_LAST_UPDATE_BY))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS))
             .andExpect(jsonPath("$.eventDate").value(sameInstant(DEFAULT_EVENT_DATE)));
@@ -259,10 +268,11 @@ class DigestsResourceIT {
         // Disconnect from session so that the updates on updatedDigests are not directly saved in db
         em.detach(updatedDigests);
         updatedDigests
-            .title(UPDATED_TITLE)
             .type(UPDATED_TYPE)
+            .title(UPDATED_TITLE)
+            .imgVerse(UPDATED_IMG_VERSE)
+            .prayReadVerse(UPDATED_PRAY_READ_VERSE)
             .content(UPDATED_CONTENT)
-            .contentContentType(UPDATED_CONTENT_CONTENT_TYPE)
             .lastUpdateBy(UPDATED_LAST_UPDATE_BY)
             .status(UPDATED_STATUS)
             .eventDate(UPDATED_EVENT_DATE);
@@ -280,10 +290,11 @@ class DigestsResourceIT {
         List<Digests> digestsList = digestsRepository.findAll();
         assertThat(digestsList).hasSize(databaseSizeBeforeUpdate);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
-        assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testDigests.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testDigests.getImgVerse()).isEqualTo(UPDATED_IMG_VERSE);
+        assertThat(testDigests.getPrayReadVerse()).isEqualTo(UPDATED_PRAY_READ_VERSE);
         assertThat(testDigests.getContent()).isEqualTo(UPDATED_CONTENT);
-        assertThat(testDigests.getContentContentType()).isEqualTo(UPDATED_CONTENT_CONTENT_TYPE);
         assertThat(testDigests.getLastUpdateBy()).isEqualTo(UPDATED_LAST_UPDATE_BY);
         assertThat(testDigests.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testDigests.getEventDate()).isEqualTo(UPDATED_EVENT_DATE);
@@ -366,7 +377,7 @@ class DigestsResourceIT {
         Digests partialUpdatedDigests = new Digests();
         partialUpdatedDigests.setId(digests.getId());
 
-        partialUpdatedDigests.type(UPDATED_TYPE).lastUpdateBy(UPDATED_LAST_UPDATE_BY);
+        partialUpdatedDigests.title(UPDATED_TITLE).prayReadVerse(UPDATED_PRAY_READ_VERSE).status(UPDATED_STATUS);
 
         restDigestsMockMvc
             .perform(
@@ -380,12 +391,13 @@ class DigestsResourceIT {
         List<Digests> digestsList = digestsRepository.findAll();
         assertThat(digestsList).hasSize(databaseSizeBeforeUpdate);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
-        assertThat(testDigests.getTitle()).isEqualTo(DEFAULT_TITLE);
-        assertThat(testDigests.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testDigests.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testDigests.getImgVerse()).isEqualTo(DEFAULT_IMG_VERSE);
+        assertThat(testDigests.getPrayReadVerse()).isEqualTo(UPDATED_PRAY_READ_VERSE);
         assertThat(testDigests.getContent()).isEqualTo(DEFAULT_CONTENT);
-        assertThat(testDigests.getContentContentType()).isEqualTo(DEFAULT_CONTENT_CONTENT_TYPE);
-        assertThat(testDigests.getLastUpdateBy()).isEqualTo(UPDATED_LAST_UPDATE_BY);
-        assertThat(testDigests.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testDigests.getLastUpdateBy()).isEqualTo(DEFAULT_LAST_UPDATE_BY);
+        assertThat(testDigests.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testDigests.getEventDate()).isEqualTo(DEFAULT_EVENT_DATE);
     }
 
@@ -402,10 +414,11 @@ class DigestsResourceIT {
         partialUpdatedDigests.setId(digests.getId());
 
         partialUpdatedDigests
-            .title(UPDATED_TITLE)
             .type(UPDATED_TYPE)
+            .title(UPDATED_TITLE)
+            .imgVerse(UPDATED_IMG_VERSE)
+            .prayReadVerse(UPDATED_PRAY_READ_VERSE)
             .content(UPDATED_CONTENT)
-            .contentContentType(UPDATED_CONTENT_CONTENT_TYPE)
             .lastUpdateBy(UPDATED_LAST_UPDATE_BY)
             .status(UPDATED_STATUS)
             .eventDate(UPDATED_EVENT_DATE);
@@ -422,10 +435,11 @@ class DigestsResourceIT {
         List<Digests> digestsList = digestsRepository.findAll();
         assertThat(digestsList).hasSize(databaseSizeBeforeUpdate);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
-        assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testDigests.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testDigests.getImgVerse()).isEqualTo(UPDATED_IMG_VERSE);
+        assertThat(testDigests.getPrayReadVerse()).isEqualTo(UPDATED_PRAY_READ_VERSE);
         assertThat(testDigests.getContent()).isEqualTo(UPDATED_CONTENT);
-        assertThat(testDigests.getContentContentType()).isEqualTo(UPDATED_CONTENT_CONTENT_TYPE);
         assertThat(testDigests.getLastUpdateBy()).isEqualTo(UPDATED_LAST_UPDATE_BY);
         assertThat(testDigests.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testDigests.getEventDate()).isEqualTo(UPDATED_EVENT_DATE);

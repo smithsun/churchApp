@@ -32,6 +32,7 @@ import PublicationService from '@/entities/publication/publication.service';
 import DigestsService from '@/entities/digests/digests.service';
 import PublicNoticeService from '@/entities/public-notice/public-notice.service';
 import VideosService from '@/entities/videos/videos.service';
+import DailyVersesService from '@/entities/daily-verses/daily-verses.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
@@ -66,8 +67,16 @@ router.beforeEach((to, from, next) => {
         next();
       }
     });
+  }
+
+  // no authorities, so just proceed
+  if (to.name !== 'Login' && !accountService.authenticated) {
+    next({ name: 'Login' });
+  }
+
+  if (to.name == 'Login' && accountService.authenticated) {
+    next({ name: 'Home' });
   } else {
-    // no authorities, so just proceed
     next();
   }
 });
@@ -95,6 +104,7 @@ new Vue({
     digestsService: () => new DigestsService(),
     publicNoticeService: () => new PublicNoticeService(),
     videosService: () => new VideosService(),
+    dailyVersesService: () => new DailyVersesService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,
   },

@@ -2,20 +2,28 @@
   "name": "Digests",
   "fields": [
     {
-      "fieldName": "title",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "type",
       "fieldType": "DigestType",
       "fieldValues": "NEWBELIVER (初信),SERVICEONE (事奉),GENERAL (一般)",
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "imgVerse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prayReadVerse",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "content",
       "fieldType": "byte[]",
-      "fieldTypeBlobContent": "any",
+      "fieldTypeBlobContent": "text",
       "fieldValidateRules": ["required"]
     },
     {
@@ -38,6 +46,12 @@
       "otherEntityRelationshipName": "digests",
       "relationshipName": "publication",
       "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "dailyVerses",
+      "otherEntityRelationshipName": "digests",
+      "relationshipName": "dailyVerses"
     }
   ],
   "entityTableName": "digests",

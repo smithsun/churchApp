@@ -32,6 +32,12 @@ const Videos = () => import('@/entities/videos/videos.vue');
 const VideosUpdate = () => import('@/entities/videos/videos-update.vue');
 // prettier-ignore
 const VideosDetails = () => import('@/entities/videos/videos-details.vue');
+// prettier-ignore
+const DailyVerses = () => import('@/entities/daily-verses/daily-verses.vue');
+// prettier-ignore
+const DailyVersesUpdate = () => import('@/entities/daily-verses/daily-verses-update.vue');
+// prettier-ignore
+const DailyVersesDetails = () => import('@/entities/daily-verses/daily-verses-details.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -153,6 +159,30 @@ export default [
     path: '/videos/:videosId/view',
     name: 'VideosView',
     component: VideosDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/daily-verses',
+    name: 'DailyVerses',
+    component: DailyVerses,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/daily-verses/new',
+    name: 'DailyVersesCreate',
+    component: DailyVersesUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/daily-verses/:dailyVersesId/edit',
+    name: 'DailyVersesEdit',
+    component: DailyVersesUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/daily-verses/:dailyVersesId/view',
+    name: 'DailyVersesView',
+    component: DailyVersesDetails,
     meta: { authorities: [Authority.USER] },
   },
   // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

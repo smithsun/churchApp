@@ -34,7 +34,7 @@ describe('Service Tests', () => {
     beforeEach(() => {
       service = new DigestsService();
       currentDate = new Date();
-      elemDefault = new Digests(123, 'AAAAAAA', DigestType.NEWBELIVER, 'image/png', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate);
+      elemDefault = new Digests(123, DigestType.NEWBELIVER, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate);
     });
 
     describe('Service methods', () => {
@@ -97,8 +97,10 @@ describe('Service Tests', () => {
       it('should update a Digests', async () => {
         const returnedFromService = Object.assign(
           {
-            title: 'BBBBBB',
             type: 'BBBBBB',
+            title: 'BBBBBB',
+            imgVerse: 'BBBBBB',
+            prayReadVerse: 'BBBBBB',
             content: 'BBBBBB',
             lastUpdateBy: 'BBBBBB',
             status: 'BBBBBB',
@@ -134,9 +136,11 @@ describe('Service Tests', () => {
       it('should partial update a Digests', async () => {
         const patchObject = Object.assign(
           {
-            type: 'BBBBBB',
-            content: 'BBBBBB',
-            lastUpdateBy: 'BBBBBB',
+            title: 'BBBBBB',
+            imgVerse: 'BBBBBB',
+            prayReadVerse: 'BBBBBB',
+            status: 'BBBBBB',
+            eventDate: dayjs(currentDate).format(DATE_TIME_FORMAT),
           },
           new Digests()
         );
@@ -169,8 +173,10 @@ describe('Service Tests', () => {
       it('should return a list of Digests', async () => {
         const returnedFromService = Object.assign(
           {
-            title: 'BBBBBB',
             type: 'BBBBBB',
+            title: 'BBBBBB',
+            imgVerse: 'BBBBBB',
+            prayReadVerse: 'BBBBBB',
             content: 'BBBBBB',
             lastUpdateBy: 'BBBBBB',
             status: 'BBBBBB',

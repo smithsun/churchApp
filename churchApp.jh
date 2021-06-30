@@ -1,43 +1,52 @@
 
 
 entity Friends {
-	name String required
-    lastName String required
-    cellPhone String
-    lastUsedTime ZonedDateTime
+	name String required,
+    lastName String required,
+    cellPhone String,
+    lastUsedTime ZonedDateTime,
     intimacyOrder Long
 }
 
 entity Publication {
-    type String required
-    startDate ZonedDateTime
-    endDate ZonedDateTime
-    priority Long
-    createdBy String
-    lastUpdateBy String
+    type String required,
+    startDate ZonedDateTime,
+    endDate ZonedDateTime,
+    priority Long,
+    createdBy String,
+    lastUpdateBy String,
     orgSignature String
 }
 
 
  
 entity Digests {
-	title String required
-	type DigestType required
-	content Blob required
-	lastUpdateBy String
-    status String
+    type DigestType required,
+	title String required,
+    imgVerse String,
+    prayReadVerse String, 
+	content TextBlob required,
+	lastUpdateBy String,
+    status String,
     eventDate ZonedDateTime
+}
+
+
+ 
+entity DailyVerses {
+    verses String,
+    order Long
 }
 
 
 
 
 entity PublicNotice {
-	title String required
-	type NoticeType required
-	content String required
-	lastUpdateBy String
-    status String
+	title String required,
+	type NoticeType required,
+	content String required,
+	lastUpdateBy String,
+    status String,
     eventDate ZonedDateTime
 }
 
@@ -53,13 +62,13 @@ enum DigestType {
 
 
 entity Videos {
-	title String
-	type String
-	content String
-    notes String
-    keyWords String
-	lastUpdateBy String
-    status String
+	title String,
+	type String,
+	content String,
+    notes String,
+    keyWords String,
+	lastUpdateBy String,
+    status String,
     eventDate ZonedDateTime
 }
 
@@ -70,6 +79,10 @@ relationship OneToOne {
      Videos  to Publication
 }
 
+
+relationship OneToMany {
+	 Digests to DailyVerses 
+}
 
 // Set pagination options
 paginate Digests, Publication with infinite-scroll

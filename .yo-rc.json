@@ -43,7 +43,7 @@
     "devServerPort": 9060,
     "clientPackageManager": "npm",
     "languages": ["zh-tw"],
-    "entities": ["Friends", "Publication", "Digests", "PublicNotice", "Videos"],
-    "lastLiquibaseTimestamp": 1624873644000
+    "entities": ["Friends", "Publication", "Digests", "PublicNotice", "Videos", "DailyVerses"],
+    "lastLiquibaseTimestamp": 1625020009000
   }
 }

@@ -58,7 +58,7 @@ export default class AccountService {
     });
   }
 
-  public hasAnyAuthorityAndCheckAuth(authorities: any): Promise<boolean> {
+  public hasAnyAuthorityAndCheckAuth(authorities: string | string[]): Promise<boolean> {
     if (typeof authorities === 'string') {
       authorities = [authorities];
     }
@@ -85,7 +85,9 @@ export default class AccountService {
     return this.store.getters.authenticated;
   }
 
-  public get userAuthorities(): any {
-    return this.store.getters.account.authorities;
+  public get userAuthorities(): string | string[] | null {
+    // let  authorities : string | string[] | null;
+    // authorities = (this.store.getters.account.authorities === undefined)? ;
+    return this.store.getters.account.authorities === undefined ? null : this.store.getters.account.authorities;
   }
 }
