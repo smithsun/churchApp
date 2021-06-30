@@ -60,7 +60,7 @@
         <b-nav-item-dropdown
           right
           id="admin-menu"
-          v-if="hasAnyAuthority('ROLE_ADMIN') && authenticated"
+          xxx-v-if="authenticated && hasAnyAuthority('ROLE_ADMIN') "
           :class="{ 'router-link-active': subIsActive('/admin') }"
           active-class="active"
           class="pointer"
