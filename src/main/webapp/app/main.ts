@@ -37,6 +37,7 @@ import DailyVersesService from '@/entities/daily-verses/daily-verses.service';
 
 /* tslint:enable */
 Vue.config.productionTip = false;
+Vue.prototype.$noLogin = true;
 config.initVueApp(Vue);
 config.initFortAwesome(Vue);
 bootstrapVueConfig.initBootstrapVue(Vue);
@@ -71,7 +72,8 @@ router.beforeEach((to, from, next) => {
 
   // no authorities, so just proceed
   if (to.name !== 'Login' && !accountService.authenticated) {
-    next({ name: 'Login' });
+    next({ name: 'Login' }); //temp remove while dev
+    // next({ name: 'Home' });
   }
 
   if (to.name == 'Login' && accountService.authenticated) {

@@ -36,6 +36,24 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('churchApp.digests.topic')" for="digests-topic">Topic</label>
+            <input
+              type="text"
+              class="form-control"
+              name="topic"
+              id="digests-topic"
+              data-cy="topic"
+              :class="{ valid: !$v.digests.topic.$invalid, invalid: $v.digests.topic.$invalid }"
+              v-model="$v.digests.topic.$model"
+              required
+            />
+            <div v-if="$v.digests.topic.$anyDirty && $v.digests.topic.$invalid">
+              <small class="form-text text-danger" v-if="!$v.digests.topic.required" v-text="$t('entity.validation.required')">
+                This field is required.
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('churchApp.digests.title')" for="digests-title">Title</label>
             <input
               type="text"
@@ -52,6 +70,18 @@
                 This field is required.
               </small>
             </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('churchApp.digests.img')" for="digests-img">Img</label>
+            <input
+              type="text"
+              class="form-control"
+              name="img"
+              id="digests-img"
+              data-cy="img"
+              :class="{ valid: !$v.digests.img.$invalid, invalid: $v.digests.img.$invalid }"
+              v-model="$v.digests.img.$model"
+            />
           </div>
           <div class="form-group">
             <label class="form-control-label" v-text="$t('churchApp.digests.imgVerse')" for="digests-imgVerse">Img Verse</label>

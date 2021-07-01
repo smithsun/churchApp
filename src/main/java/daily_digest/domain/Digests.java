@@ -31,8 +31,15 @@ public class Digests implements Serializable {
     private DigestType type;
 
     @NotNull
+    @Column(name = "topic", nullable = false)
+    private String topic;
+
+    @NotNull
     @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "img")
+    private String img;
 
     @Column(name = "img_verse")
     private String imgVerse;
@@ -90,6 +97,19 @@ public class Digests implements Serializable {
         this.type = type;
     }
 
+    public String getTopic() {
+        return this.topic;
+    }
+
+    public Digests topic(String topic) {
+        this.topic = topic;
+        return this;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
     public String getTitle() {
         return this.title;
     }
@@ -101,6 +121,19 @@ public class Digests implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImg() {
+        return this.img;
+    }
+
+    public Digests img(String img) {
+        this.img = img;
+        return this;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getImgVerse() {
@@ -250,7 +283,9 @@ public class Digests implements Serializable {
         return "Digests{" +
             "id=" + getId() +
             ", type='" + getType() + "'" +
+            ", topic='" + getTopic() + "'" +
             ", title='" + getTitle() + "'" +
+            ", img='" + getImg() + "'" +
             ", imgVerse='" + getImgVerse() + "'" +
             ", prayReadVerse='" + getPrayReadVerse() + "'" +
             ", content='" + getContent() + "'" +

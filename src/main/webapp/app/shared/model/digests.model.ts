@@ -5,7 +5,9 @@ import { DigestType } from '@/shared/model/enumerations/digest-type.model';
 export interface IDigests {
   id?: number;
   type?: DigestType;
+  topic?: string;
   title?: string;
+  img?: string | null;
   imgVerse?: string | null;
   prayReadVerse?: string | null;
   content?: string;
@@ -20,7 +22,9 @@ export class Digests implements IDigests {
   constructor(
     public id?: number,
     public type?: DigestType,
+    public topic?: string,
     public title?: string,
+    public img?: string | null,
     public imgVerse?: string | null,
     public prayReadVerse?: string | null,
     public content?: string,

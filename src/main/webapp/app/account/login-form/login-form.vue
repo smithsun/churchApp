@@ -1,5 +1,7 @@
 <template>
-  <div class="modal-body">
+
+  <div class="modal-body"> 
+    
     <div class="row justify-content-center">
       <div class="col-md-8">
         <b-alert show data-cy="loginError" variant="danger" v-if="authenticationError" v-html="$t('login.messages.error.authentication')">
@@ -36,7 +38,7 @@
             <span v-text="$t('login.form.rememberme')">Remember me</span>
           </b-form-checkbox>
           <div>
-            <b-button data-cy="submit" type="submit" variant="primary" v-text="$t('login.form.button')">Sign in</b-button>
+            <b-button block data-cy="submit" type="submit" variant="primary" v-text="$t('login.form.button')">Sign in</b-button>
           </div>
         </b-form>
         <p></p>

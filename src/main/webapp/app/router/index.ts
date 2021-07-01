@@ -8,7 +8,7 @@ Component.registerHooks([
 import Router from 'vue-router';
 
 const Home = () => import('@/core/home/home.vue');
-const Login = () => import('@/account/login-form/login-form.vue');
+const Login = () => import('@/core/login/login.vue'); 
 const Error = () => import('@/core/error/error.vue');
 import account from '@/router/account';
 import admin from '@/router/admin';

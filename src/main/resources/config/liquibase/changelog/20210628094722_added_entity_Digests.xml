@@ -17,8 +17,14 @@
             <column name="type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="topic" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
             <column name="title" type="varchar(255)">
                 <constraints nullable="false" />
+            </column>
+            <column name="img" type="varchar(255)">
+                <constraints nullable="true" />
             </column>
             <column name="img_verse" type="varchar(255)">
                 <constraints nullable="true" />
@@ -63,7 +69,9 @@
                   tableName="digests">
             <column name="id" type="numeric"/>
             <column name="type" type="string"/>
+            <column name="topic" type="string"/>
             <column name="title" type="string"/>
+            <column name="img" type="string"/>
             <column name="img_verse" type="string"/>
             <column name="pray_read_verse" type="string"/>
             <column name="content" type="clob"/>

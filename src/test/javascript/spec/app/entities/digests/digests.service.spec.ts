@@ -34,7 +34,19 @@ describe('Service Tests', () => {
     beforeEach(() => {
       service = new DigestsService();
       currentDate = new Date();
-      elemDefault = new Digests(123, DigestType.NEWBELIVER, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate);
+      elemDefault = new Digests(
+        123,
+        DigestType.NEWBELIVER,
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        currentDate
+      );
     });
 
     describe('Service methods', () => {
@@ -98,7 +110,9 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             type: 'BBBBBB',
+            topic: 'BBBBBB',
             title: 'BBBBBB',
+            img: 'BBBBBB',
             imgVerse: 'BBBBBB',
             prayReadVerse: 'BBBBBB',
             content: 'BBBBBB',
@@ -136,9 +150,11 @@ describe('Service Tests', () => {
       it('should partial update a Digests', async () => {
         const patchObject = Object.assign(
           {
+            topic: 'BBBBBB',
             title: 'BBBBBB',
-            imgVerse: 'BBBBBB',
-            prayReadVerse: 'BBBBBB',
+            img: 'BBBBBB',
+            content: 'BBBBBB',
+            lastUpdateBy: 'BBBBBB',
             status: 'BBBBBB',
             eventDate: dayjs(currentDate).format(DATE_TIME_FORMAT),
           },
@@ -174,7 +190,9 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             type: 'BBBBBB',
+            topic: 'BBBBBB',
             title: 'BBBBBB',
+            img: 'BBBBBB',
             imgVerse: 'BBBBBB',
             prayReadVerse: 'BBBBBB',
             content: 'BBBBBB',

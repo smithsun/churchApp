@@ -7,6 +7,7 @@ import {
   BProgressBar,
   BPagination,
   BButton,
+  BNav, 
   BNavbar,
   BNavbarNav,
   BNavbarBrand,
@@ -14,9 +15,14 @@ import {
   BNavItem,
   BNavItemDropdown,
   BCollapse,
+  BCard,
+  BCardText,
+  BTab,
+  BTabs,
   BBadge,
   BDropdown,
   BDropdownItem,
+  BImg,
   BLink,
   BAlert,
   BModal,
@@ -30,10 +36,12 @@ export function initBootstrapVue(vue) {
   vue.component('b-badge', BBadge);
   vue.component('b-dropdown', BDropdown);
   vue.component('b-dropdown-item', BDropdownItem);
+  vue.component('b-img', BImg);
   vue.component('b-link', BLink);
   vue.component('b-alert', BAlert);
   vue.component('b-modal', BModal);
   vue.component('b-button', BButton);
+  vue.component('b-nav', BNav);
   vue.component('b-navbar', BNavbar);
   vue.component('b-navbar-nav', BNavbarNav);
   vue.component('b-navbar-brand', BNavbarBrand);
@@ -46,6 +54,10 @@ export function initBootstrapVue(vue) {
   vue.component('b-form-group', BFormGroup);
   vue.component('b-form-checkbox', BFormCheckbox);
   vue.component('b-collapse', BCollapse);
+  vue.component('b-card', BCard);
+  vue.component('b-card-text', BCardText);
+  vue.component('b-tabs', BTabs);
+  vue.component('b-tab', BTab); 
   vue.component('b-nav-item', BNavItem);
   vue.component('b-nav-item-dropdown', BNavItemDropdown);
   vue.component('b-modal', BModal);

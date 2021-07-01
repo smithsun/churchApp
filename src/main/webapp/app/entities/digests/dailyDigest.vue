@@ -1,12 +1,12 @@
 <template>
   <div>
     <h2 id="page-heading" data-cy="DigestsHeading">
-      <span v-text="$t('churchApp.digests.home.title')" id="digests-heading">Digests</span>
+      <span v-text="$t('churchApp.digests.home.title')" id="digests-heading">每日靈糧</span>
       <div class="d-flex justify-content-end">
-        <button class="btn btn-info mr-2" v-on:click="handleSyncList" :disabled="isFetching">
+        <!-- <button class="btn btn-info mr-2" v-on:click="handleSyncList" :disabled="isFetching">
           <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon>
           <span v-text="$t('churchApp.digests.home.refreshListLabel')">Refresh List</span>
-        </button>
+        </button> -->
         <router-link :to="{ name: 'DigestsCreate' }" custom v-slot="{ navigate }">
           <button
             @click="navigate"
@@ -24,6 +24,29 @@
     <div class="alert alert-warning" v-if="!isFetching && digests && digests.length === 0">
       <span v-text="$t('churchApp.digests.home.notFound')">No digests found</span>
     </div>
+
+    <div class="row" v-if="digests && digests.length > 0">
+      <div v-for="digests in digests" :key="digests.id" data-cy="entityTable" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <!-- <td>
+              <router-link :to="{ name: 'DigestsView', params: { digestsId: digests.id } }">{{ digests.id }}</router-link>
+            </td> -->
+        <div v-text="$t('churchApp.DigestType.' + digests.type)">{{ digests.type }}</div>
+        <div>{{ digests.eventDate ? $d(Date.parse(digests.eventDate), 'short') : '' }}</div>
+        <div>{{ digests.topic }}</div>
+        <div>{{ digests.title }}</div> 
+        <div class="position-relative">
+          <b-img src="./content/images/digestImg/web_bg_1.svg" fluid alt="Responsive image"></b-img>
+          <!-- {{ digests.img }} -->
+          <div class="img-verse">{{ digests.imgVerse }}</div>
+        </div>
+
+        <div>{{ digests.prayReadVerse }}</div>
+        <div>{{ digests.content }}</div>
+        <!-- <td>{{ digests.lastUpdateBy }}</td>
+            <td>{{ digests.status }}</td> -->
+      </div>
+    </div>
+
     <div class="table-responsive" v-if="digests && digests.length > 0">
       <table class="table table-striped" aria-describedby="digests">
         <thead>
@@ -35,10 +58,6 @@
             <th scope="row" v-on:click="changeOrder('type')">
               <span v-text="$t('churchApp.digests.type')">Type</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'type'"></jhi-sort-indicator>
-            </th>
-            <th scope="row" v-on:click="changeOrder('topic')">
-              <span v-text="$t('churchApp.digests.topic')">Topic</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'topic'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('title')">
               <span v-text="$t('churchApp.digests.title')">Title</span>
@@ -85,7 +104,6 @@
               <router-link :to="{ name: 'DigestsView', params: { digestsId: digests.id } }">{{ digests.id }}</router-link>
             </td>
             <td v-text="$t('churchApp.DigestType.' + digests.type)">{{ digests.type }}</td>
-            <td>{{ digests.topic }}</td>
             <td>{{ digests.title }}</td>
             <td>{{ digests.img }}</td>
             <td>{{ digests.imgVerse }}</td>
@@ -170,3 +188,12 @@
 </template>
 
 <script lang="ts" src="./digests.component.ts"></script>
+
+<style scoped>
+.img-verse {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  writing-mode: vertical-rl;
+}
+</style>

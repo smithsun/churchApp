@@ -13,10 +13,22 @@
             <span v-text="$t('churchApp.DigestType.' + digests.type)">{{ digests.type }}</span>
           </dd>
           <dt>
+            <span v-text="$t('churchApp.digests.topic')">Topic</span>
+          </dt>
+          <dd>
+            <span>{{ digests.topic }}</span>
+          </dd>
+          <dt>
             <span v-text="$t('churchApp.digests.title')">Title</span>
           </dt>
           <dd>
             <span>{{ digests.title }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('churchApp.digests.img')">Img</span>
+          </dt>
+          <dd>
+            <span>{{ digests.img }}</span>
           </dd>
           <dt>
             <span v-text="$t('churchApp.digests.imgVerse')">Img Verse</span>

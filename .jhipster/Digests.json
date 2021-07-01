@@ -8,9 +8,18 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "topic",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "title",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "img",
+      "fieldType": "String"
     },
     {
       "fieldName": "imgVerse",

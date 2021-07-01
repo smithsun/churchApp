@@ -21,9 +21,13 @@ const validations: any = {
     type: {
       required,
     },
+    topic: {
+      required,
+    },
     title: {
       required,
     },
+    img: {},
     imgVerse: {},
     prayReadVerse: {},
     content: {

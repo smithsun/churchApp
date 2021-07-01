@@ -22,7 +22,9 @@ entity Publication {
  
 entity Digests {
     type DigestType required,
+    topic String required,
 	title String required,
+    img String,
     imgVerse String,
     prayReadVerse String, 
 	content TextBlob required,

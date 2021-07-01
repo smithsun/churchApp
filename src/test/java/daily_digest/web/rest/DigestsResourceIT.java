@@ -41,8 +41,14 @@ class DigestsResourceIT {
     private static final DigestType DEFAULT_TYPE = DigestType.NEWBELIVER;
     private static final DigestType UPDATED_TYPE = DigestType.SERVICEONE;
 
+    private static final String DEFAULT_TOPIC = "AAAAAAAAAA";
+    private static final String UPDATED_TOPIC = "BBBBBBBBBB";
+
     private static final String DEFAULT_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_TITLE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_IMG = "AAAAAAAAAA";
+    private static final String UPDATED_IMG = "BBBBBBBBBB";
 
     private static final String DEFAULT_IMG_VERSE = "AAAAAAAAAA";
     private static final String UPDATED_IMG_VERSE = "BBBBBBBBBB";
@@ -91,7 +97,9 @@ class DigestsResourceIT {
     public static Digests createEntity(EntityManager em) {
         Digests digests = new Digests()
             .type(DEFAULT_TYPE)
+            .topic(DEFAULT_TOPIC)
             .title(DEFAULT_TITLE)
+            .img(DEFAULT_IMG)
             .imgVerse(DEFAULT_IMG_VERSE)
             .prayReadVerse(DEFAULT_PRAY_READ_VERSE)
             .content(DEFAULT_CONTENT)
@@ -110,7 +118,9 @@ class DigestsResourceIT {
     public static Digests createUpdatedEntity(EntityManager em) {
         Digests digests = new Digests()
             .type(UPDATED_TYPE)
+            .topic(UPDATED_TOPIC)
             .title(UPDATED_TITLE)
+            .img(UPDATED_IMG)
             .imgVerse(UPDATED_IMG_VERSE)
             .prayReadVerse(UPDATED_PRAY_READ_VERSE)
             .content(UPDATED_CONTENT)
@@ -140,7 +150,9 @@ class DigestsResourceIT {
         assertThat(digestsList).hasSize(databaseSizeBeforeCreate + 1);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
         assertThat(testDigests.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testDigests.getTopic()).isEqualTo(DEFAULT_TOPIC);
         assertThat(testDigests.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testDigests.getImg()).isEqualTo(DEFAULT_IMG);
         assertThat(testDigests.getImgVerse()).isEqualTo(DEFAULT_IMG_VERSE);
         assertThat(testDigests.getPrayReadVerse()).isEqualTo(DEFAULT_PRAY_READ_VERSE);
         assertThat(testDigests.getContent()).isEqualTo(DEFAULT_CONTENT);
@@ -188,6 +200,24 @@ class DigestsResourceIT {
 
     @Test
     @Transactional
+    void checkTopicIsRequired() throws Exception {
+        int databaseSizeBeforeTest = digestsRepository.findAll().size();
+        // set the field null
+        digests.setTopic(null);
+
+        // Create the Digests, which fails.
+        DigestsDTO digestsDTO = digestsMapper.toDto(digests);
+
+        restDigestsMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(digestsDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Digests> digestsList = digestsRepository.findAll();
+        assertThat(digestsList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkTitleIsRequired() throws Exception {
         int databaseSizeBeforeTest = digestsRepository.findAll().size();
         // set the field null
@@ -217,7 +247,9 @@ class DigestsResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(digests.getId().intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].topic").value(hasItem(DEFAULT_TOPIC)))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
+            .andExpect(jsonPath("$.[*].img").value(hasItem(DEFAULT_IMG)))
             .andExpect(jsonPath("$.[*].imgVerse").value(hasItem(DEFAULT_IMG_VERSE)))
             .andExpect(jsonPath("$.[*].prayReadVerse").value(hasItem(DEFAULT_PRAY_READ_VERSE)))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
@@ -239,7 +271,9 @@ class DigestsResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(digests.getId().intValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.topic").value(DEFAULT_TOPIC))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
+            .andExpect(jsonPath("$.img").value(DEFAULT_IMG))
             .andExpect(jsonPath("$.imgVerse").value(DEFAULT_IMG_VERSE))
             .andExpect(jsonPath("$.prayReadVerse").value(DEFAULT_PRAY_READ_VERSE))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
@@ -269,7 +303,9 @@ class DigestsResourceIT {
         em.detach(updatedDigests);
         updatedDigests
             .type(UPDATED_TYPE)
+            .topic(UPDATED_TOPIC)
             .title(UPDATED_TITLE)
+            .img(UPDATED_IMG)
             .imgVerse(UPDATED_IMG_VERSE)
             .prayReadVerse(UPDATED_PRAY_READ_VERSE)
             .content(UPDATED_CONTENT)
@@ -291,7 +327,9 @@ class DigestsResourceIT {
         assertThat(digestsList).hasSize(databaseSizeBeforeUpdate);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
         assertThat(testDigests.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testDigests.getTopic()).isEqualTo(UPDATED_TOPIC);
         assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testDigests.getImg()).isEqualTo(UPDATED_IMG);
         assertThat(testDigests.getImgVerse()).isEqualTo(UPDATED_IMG_VERSE);
         assertThat(testDigests.getPrayReadVerse()).isEqualTo(UPDATED_PRAY_READ_VERSE);
         assertThat(testDigests.getContent()).isEqualTo(UPDATED_CONTENT);
@@ -377,7 +415,12 @@ class DigestsResourceIT {
         Digests partialUpdatedDigests = new Digests();
         partialUpdatedDigests.setId(digests.getId());
 
-        partialUpdatedDigests.title(UPDATED_TITLE).prayReadVerse(UPDATED_PRAY_READ_VERSE).status(UPDATED_STATUS);
+        partialUpdatedDigests
+            .topic(UPDATED_TOPIC)
+            .img(UPDATED_IMG)
+            .content(UPDATED_CONTENT)
+            .status(UPDATED_STATUS)
+            .eventDate(UPDATED_EVENT_DATE);
 
         restDigestsMockMvc
             .perform(
@@ -392,13 +435,15 @@ class DigestsResourceIT {
         assertThat(digestsList).hasSize(databaseSizeBeforeUpdate);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
         assertThat(testDigests.getType()).isEqualTo(DEFAULT_TYPE);
-        assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testDigests.getTopic()).isEqualTo(UPDATED_TOPIC);
+        assertThat(testDigests.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testDigests.getImg()).isEqualTo(UPDATED_IMG);
         assertThat(testDigests.getImgVerse()).isEqualTo(DEFAULT_IMG_VERSE);
-        assertThat(testDigests.getPrayReadVerse()).isEqualTo(UPDATED_PRAY_READ_VERSE);
-        assertThat(testDigests.getContent()).isEqualTo(DEFAULT_CONTENT);
+        assertThat(testDigests.getPrayReadVerse()).isEqualTo(DEFAULT_PRAY_READ_VERSE);
+        assertThat(testDigests.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testDigests.getLastUpdateBy()).isEqualTo(DEFAULT_LAST_UPDATE_BY);
         assertThat(testDigests.getStatus()).isEqualTo(UPDATED_STATUS);
-        assertThat(testDigests.getEventDate()).isEqualTo(DEFAULT_EVENT_DATE);
+        assertThat(testDigests.getEventDate()).isEqualTo(UPDATED_EVENT_DATE);
     }
 
     @Test
@@ -415,7 +460,9 @@ class DigestsResourceIT {
 
         partialUpdatedDigests
             .type(UPDATED_TYPE)
+            .topic(UPDATED_TOPIC)
             .title(UPDATED_TITLE)
+            .img(UPDATED_IMG)
             .imgVerse(UPDATED_IMG_VERSE)
             .prayReadVerse(UPDATED_PRAY_READ_VERSE)
             .content(UPDATED_CONTENT)
@@ -436,7 +483,9 @@ class DigestsResourceIT {
         assertThat(digestsList).hasSize(databaseSizeBeforeUpdate);
         Digests testDigests = digestsList.get(digestsList.size() - 1);
         assertThat(testDigests.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testDigests.getTopic()).isEqualTo(UPDATED_TOPIC);
         assertThat(testDigests.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testDigests.getImg()).isEqualTo(UPDATED_IMG);
         assertThat(testDigests.getImgVerse()).isEqualTo(UPDATED_IMG_VERSE);
         assertThat(testDigests.getPrayReadVerse()).isEqualTo(UPDATED_PRAY_READ_VERSE);
         assertThat(testDigests.getContent()).isEqualTo(UPDATED_CONTENT);

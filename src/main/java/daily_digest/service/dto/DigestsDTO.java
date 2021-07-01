@@ -18,7 +18,12 @@ public class DigestsDTO implements Serializable {
     private DigestType type;
 
     @NotNull
+    private String topic;
+
+    @NotNull
     private String title;
+
+    private String img;
 
     private String imgVerse;
 
@@ -51,12 +56,28 @@ public class DigestsDTO implements Serializable {
         this.type = type;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getImgVerse() {
@@ -142,7 +163,9 @@ public class DigestsDTO implements Serializable {
         return "DigestsDTO{" +
             "id=" + getId() +
             ", type='" + getType() + "'" +
+            ", topic='" + getTopic() + "'" +
             ", title='" + getTitle() + "'" +
+            ", img='" + getImg() + "'" +
             ", imgVerse='" + getImgVerse() + "'" +
             ", prayReadVerse='" + getPrayReadVerse() + "'" +
             ", content='" + getContent() + "'" +

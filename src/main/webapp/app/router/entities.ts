@@ -15,6 +15,8 @@ const PublicationUpdate = () => import('@/entities/publication/publication-updat
 // prettier-ignore
 const PublicationDetails = () => import('@/entities/publication/publication-details.vue');
 // prettier-ignore
+const DailyDigests = () => import('@/entities/digests/dailyDigest.vue');
+// prettier-ignore
 const Digests = () => import('@/entities/digests/digests.vue');
 // prettier-ignore
 const DigestsUpdate = () => import('@/entities/digests/digests-update.vue');
@@ -27,7 +29,7 @@ const PublicNoticeUpdate = () => import('@/entities/public-notice/public-notice-
 // prettier-ignore
 const PublicNoticeDetails = () => import('@/entities/public-notice/public-notice-details.vue');
 // prettier-ignore
-const Videos = () => import('@/entities/videos/videos.vue');
+const Videos = () => import('@/entities/videos/videos.vue'); 
 // prettier-ignore
 const VideosUpdate = () => import('@/entities/videos/videos-update.vue');
 // prettier-ignore
@@ -38,11 +40,12 @@ const DailyVerses = () => import('@/entities/daily-verses/daily-verses.vue');
 const DailyVersesUpdate = () => import('@/entities/daily-verses/daily-verses-update.vue');
 // prettier-ignore
 const DailyVersesDetails = () => import('@/entities/daily-verses/daily-verses-details.vue');
+// prettier-ignore
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
   {
-    path: '/friends',
+  path: '/friends',
     name: 'Friends',
     component: Friends,
     meta: { authorities: [Authority.USER] },
