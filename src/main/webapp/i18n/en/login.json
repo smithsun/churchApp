@@ -4,8 +4,11 @@
     "form": {
       "password": "Password",
       "password.placeholder": "Your password",
-      "rememberme": "Remember me",
-      "button": "Sign in"
+      "rememberme": "Remember me", 
+      "rememberMyCellphone": "Remember Cellphone",
+      "button": "Sign in",
+      "passwordLogin":"Login With Password",
+      "quickLogin":"Fast Login"
     },
     "messages": {
       "error": {

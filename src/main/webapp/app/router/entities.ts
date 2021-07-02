@@ -93,6 +93,12 @@ export default [
     meta: { authorities: [Authority.USER] },
   },
   {
+    path: '/dailyDigests',
+    name: 'DailyDigests',
+    component: DailyDigests,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
     path: '/digests',
     name: 'Digests',
     component: Digests,

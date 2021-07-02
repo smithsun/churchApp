@@ -156,19 +156,26 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <div class="col-12 mt-2">
-      <div class="col-8">
-        <b-nav pills content-class="mt-0" fill>
-          <b-nav-item to="/" exact> <span class="icon-home"></span>&nbsp;首頁 </b-nav-item>
-          <b-nav-item to="/digests"> <span class="icon-baguette"></span>&nbsp;每日靈糧 </b-nav-item>
-          <b-nav-item to="/videoPage"> <span class="icon-video-clip"></span>&nbsp;影音 </b-nav-item>
-          <b-nav-item to="/"> <span class="icon-book-music"></span>&nbsp;詩歌 </b-nav-item>
-          <b-nav-item to="/friends"> <span class="icon-qrcode-scan"></span>&nbsp;簽到 </b-nav-item>
-          <b-nav-item to="/public-bullhorn"> <span class="icon-home"></span>&nbsp;公告 </b-nav-item>
-          <b-nav-item to="/public-pray"> <span class="icon-home"></span>&nbsp;代禱 </b-nav-item>
+    <div class="container mt-2">
+       
+        <b-nav pills content-class="mt-0" justified >
+          <b-nav-item to="/" exact> <span class="icon-home"></span>
+            <span class="d-none d-sm-inline">&nbsp;首頁</span></b-nav-item>
+          <b-nav-item to="/dailyDigests"> <span class="icon-baguette"></span>
+           <span class="d-none d-sm-inline">&nbsp;每日靈糧 </span></b-nav-item>
+          <b-nav-item to="/videoPage"> <span class="icon-video-clip"></span>
+           <span class="d-none d-sm-inline">&nbsp;影音 </span></b-nav-item>
+          <b-nav-item to="/"> <span class="icon-book-music"></span>
+           <span class="d-none d-sm-inline">&nbsp;詩歌 </span></b-nav-item>
+          <b-nav-item to="/friends"> <span class="icon-qrcode-scan"></span>
+            <span class="d-none d-sm-inline">&nbsp;簽到</span> </b-nav-item>
+          <b-nav-item to="/public-bullhorn"> <span class="icon-home"></span>
+            <span class="d-none d-sm-inline">&nbsp;公告 </span></b-nav-item>
+          <b-nav-item to="/public-pray"> <span class="icon-home"></span>
+            <span class="d-none d-sm-inline">&nbsp;代禱</span> </b-nav-item>
         </b-nav>
-      </div>
     </div>
+   
   </div>
 </template>
 

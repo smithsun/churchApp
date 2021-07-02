@@ -2,6 +2,14 @@
   <div>
     <h2 id="page-heading" data-cy="DigestsHeading">
       <span v-text="$t('churchApp.digests.home.title')" id="digests-heading">每日靈糧</span>
+      <span>
+        <b-button-group>
+            <b-button v-for="digestType in digestTypes" :key="digestType.key"
+               :pressed.sync="digestType.state" 
+                @click="reset(digestType.key)"
+            >{{digestType.value}}</b-button>
+        </b-button-group>
+     </span>
       <div class="d-flex justify-content-end">
         <!-- <button class="btn btn-info mr-2" v-on:click="handleSyncList" :disabled="isFetching">
           <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon>
@@ -41,7 +49,15 @@
         </div>
 
         <div>{{ digests.prayReadVerse }}</div>
-        <div>{{ digests.content }}</div>
+        <div class="card"> 
+            {{digests.content.length}}
+            <div v-if="digests.content.length<250"> {{ digests.content}}</div>
+            <div v-if="digests.content.length > 250 && !digests.extend" >{{ digests.content.substring(0,250)+".." }}
+                <span @click="digests.extend = true"> ［更多］</span>
+            </div>
+            <div v-if="digests.content.length > 250 && digests.extend" >{{ digests.content}}
+                <span @click="digests.extend = false"> ［縮合]</span>
+            </div>
         <!-- <td>{{ digests.lastUpdateBy }}</td>
             <td>{{ digests.status }}</td> -->
       </div>
@@ -184,6 +200,7 @@
         </button>
       </div>
     </b-modal>
+    </div>
   </div>
 </template>
 

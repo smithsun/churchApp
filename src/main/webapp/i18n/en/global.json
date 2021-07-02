@@ -33,6 +33,8 @@
       "language": "Language"
     },
     "form": {
+      "cellphone.label": "Cellphone",
+      "cellphone.placeholder": "Your cellphone",
       "username.label": "Username",
       "username.placeholder": "Your username",
       "currentpassword.label": "Current password",

@@ -4,8 +4,11 @@
     "form": {
       "password": "密碼",
       "password.placeholder": "您的密碼",
-      "rememberme": "自動登入",
-      "button": "登入"
+      "rememberme": "記住姓名",
+      "rememberMyCellphone": "記住手機號碼",
+      "button": "密碼登入",
+      "passwordLogin":"密碼登入",
+      "quickLogin":"快速登入"
     },
     "messages": {
       "error": {

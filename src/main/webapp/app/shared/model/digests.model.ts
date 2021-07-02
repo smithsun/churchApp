@@ -16,6 +16,7 @@ export interface IDigests {
   eventDate?: Date | null;
   publication?: IPublication | null;
   dailyVerses?: IDailyVerses[] | null;
+  extend?: boolean | null;
 }
 
 export class Digests implements IDigests {

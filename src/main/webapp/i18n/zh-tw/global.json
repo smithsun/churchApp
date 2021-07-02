@@ -39,6 +39,8 @@
       "language": "語言"
     },
     "form": {
+      "cellphone.label": "手機號碼",
+      "cellphone.placeholder": "你的手機號碼",
       "username.label": "帳號",
       "username.placeholder": "您的帳號",
       "currentpassword.label": "現在的密碼",
@@ -58,8 +60,8 @@
           "suffix": "，可以使用預設帳號:<br/>- 管理員 (帳號是 \"admin\"，密碼是 \"admin\") <br/>- 使用者 (帳號 \"user\"，密碼是 \"user\")。"
         },
         "register": {
-          "noaccount": "還沒有帳號嗎?",
-          "link": "註冊一個吧"
+          "noaccount": "沒有帳號?",
+          "link": "我要註冊"
         }
       },
       "error": {

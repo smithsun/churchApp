@@ -11,8 +11,7 @@ eg $input-color: red;
 @import '~bootswatch/dist/sketchy/variables';
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
-@import '~bootswatch/dist/sketchy/bootswatch'; 
-// @import '../otis_icomoon_210701/style.css';
+@import '~bootswatch/dist/sketchy/bootswatch';  
 /* Dirty fix on navbar active link with bootswatch theme */
 nav li.router-link-active {
   color: $navbar-dark-active-color;
