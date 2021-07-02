@@ -28,6 +28,7 @@
               <option value="NEWBELIVER" v-bind:label="$t('churchApp.DigestType.NEWBELIVER')">初信</option>
               <option value="SERVICEONE" v-bind:label="$t('churchApp.DigestType.SERVICEONE')">事奉</option>
               <option value="GENERAL" v-bind:label="$t('churchApp.DigestType.GENERAL')">一般</option>
+              <option value="CUSTOMIZED" v-bind:label="$t('churchApp.DigestType.CUSTOMIZED')">自訂</option>
             </select>
             <div v-if="$v.digests.type.$anyDirty && $v.digests.type.$invalid">
               <small class="form-text text-danger" v-if="!$v.digests.type.required" v-text="$t('entity.validation.required')">
@@ -109,14 +110,6 @@
               v-model="$v.digests.prayReadVerse.$model"
             />
           </div>
-
-          <quill-editor v-model="$v.digests.content.$model"
-                    ref="myQuillEditor"
-                    :options="editorOption">
-          </quill-editor>
-         <!-- @blur="onEditorBlur($event)"
-              @focus="onEditorFocus($event)"
-              @ready="onEditorReady($event)" -->
           <div class="form-group">
             <label class="form-control-label" v-text="$t('churchApp.digests.content')" for="digests-content">Content</label>
             <textarea

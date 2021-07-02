@@ -19,14 +19,14 @@ entity Publication {
 }
 
 
- 
+
 entity Digests {
     type DigestType required,
     topic String required,
 	title String required,
     img String,
     imgVerse String,
-    prayReadVerse String, 
+    prayReadVerse String,
 	content TextBlob required,
 	lastUpdateBy String,
     status String,
@@ -34,7 +34,7 @@ entity Digests {
 }
 
 
- 
+
 entity DailyVerses {
     verses String,
     order Long
@@ -57,9 +57,11 @@ enum NoticeType {
 }
 
 enum DigestType {
-    NEWBELIVER ("初信"), 
-    SERVICEONE ("事奉"), 
-    GENERAL ("一般")
+    NEWBELIVER ("初信"),
+    SERVICEONE ("事奉"),
+    GENERAL ("一般"),
+    CUSTOMIZED("自訂")
+
 }
 
 
@@ -83,7 +85,7 @@ relationship OneToOne {
 
 
 relationship OneToMany {
-	 Digests to DailyVerses 
+	 Digests to DailyVerses
 }
 
 // Set pagination options

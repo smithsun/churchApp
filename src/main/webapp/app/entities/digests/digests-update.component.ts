@@ -16,13 +16,6 @@ import { IDailyVerses } from '@/shared/model/daily-verses.model';
 import { IDigests, Digests } from '@/shared/model/digests.model';
 import DigestsService from './digests.service';
 
-// require styles
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-
-import { quillEditor } from 'vue-quill-editor'
-
 const validations: any = {
   digests: {
     type: {
@@ -164,9 +157,5 @@ export default class DigestsUpdate extends mixins(JhiDataUtils) {
       .then(res => {
         this.dailyVerses = res.data;
       });
-  }
-
-  public onEditorChange():void{
-    
   }
 }

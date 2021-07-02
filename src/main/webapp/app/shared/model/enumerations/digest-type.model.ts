@@ -4,4 +4,6 @@ export enum DigestType {
   SERVICEONE = '事奉',
 
   GENERAL = '一般',
+
+  CUSTOMIZED = '自訂',
 }

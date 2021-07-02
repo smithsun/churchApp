@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <ribbon></ribbon>
-      <div id="app-header" v-if="authenticated && $noLogin">
+      <div id="app-header" xxx-v-if="authenticated && $noLogin">
         <jhi-navbar></jhi-navbar>
       </div>
       <div class="container-fluid">
@@ -13,7 +13,7 @@
         <login-form></login-form>
       </b-modal>
 
-      <jhi-footer v-if="authenticated && $noLogin">
+      <jhi-footer xxx-v-if="authenticated && $noLogin">
         {{$noLogin}}
       </jhi-footer>
     </div>

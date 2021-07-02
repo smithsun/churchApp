@@ -10,7 +10,7 @@ import * as config from './shared/config/config';
 import * as bootstrapVueConfig from './shared/config/config-bootstrap-vue';
 import JhiItemCountComponent from './shared/jhi-item-count.vue';
 import JhiSortIndicatorComponent from './shared/sort/jhi-sort-indicator.vue';
-import InfiniteLoading from 'vue-infinite-loading'; 
+import InfiniteLoading from 'vue-infinite-loading';
 import HealthService from './admin/health/health.service';
 import MetricsService from './admin/metrics/metrics.service';
 import LogsService from './admin/logs/logs.service';
@@ -20,7 +20,7 @@ import RegisterService from './account/register/register.service';
 import UserManagementService from '@/admin/user-management/user-management.service';
 import LoginService from './account/login.service';
 import AccountService from './account/account.service';
-import VueQuillEditor from 'vue-quill-editor'
+import VueQuillEditor from 'vue-quill-editor';
 
 // require styles
 // import 'quill/dist/quill.core.css'
@@ -49,7 +49,7 @@ config.initFortAwesome(Vue);
 bootstrapVueConfig.initBootstrapVue(Vue);
 Vue.use(Vue2Filters);
 Vue.use(ToastPlugin);
-Vue.use(VueQuillEditor, /* { default global options } */)
+Vue.use(VueQuillEditor /* { default global options } */);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('jhi-item-count', JhiItemCountComponent);
@@ -76,19 +76,21 @@ router.beforeEach((to, from, next) => {
         next();
       }
     });
-  }
-
-  // no authorities, so just proceed
-  if (to.name !== 'Login' && !accountService.authenticated) {
-    next({ name: 'Login' }); //temp remove while dev
-    // next({ name: 'Home' });
-  }
-
-  if (to.name == 'Login' && accountService.authenticated) {
-    next({ name: 'Home' });
   } else {
     next();
   }
+
+  // no authorities, so just proceed
+  // if (to.name !== 'Login' && !accountService.authenticated) {
+  //   next({ name: 'Login' });
+
+  // }
+
+  // if (to.name == 'Login' && accountService.authenticated) {
+  //   next({ name: 'Home' });
+  // } else {
+  //   next();
+  // }
 });
 
 /* tslint:disable */

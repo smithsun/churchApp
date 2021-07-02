@@ -10,9 +10,6 @@ import DigestsService from './digests.service';
 
 @Component({
   mixins: [Vue2Filters.mixin],
-  data:{
-    digests:[]
-  }
 })
 export default class Digests extends mixins(JhiDataUtils) {
   @Inject('digestsService') private digestsService: () => DigestsService;
@@ -27,37 +24,30 @@ export default class Digests extends mixins(JhiDataUtils) {
   public infiniteId = +new Date();
   public links = {};
 
-  public digests: IDigests[] = []; 
+  public digests: IDigests[] = [];
 
   public isFetching = false;
 
-  public digestTypes = [{key:"NEWBELIVER", value:"初信"}, 
-                        {key:"GENERAL",value:"一般"},
-                        {key:"SERVICEONE",value:"事奉"},
-                        {key:"CUSTOMIZED",value:"自選"}];
-
   public mounted(): void {
-    this.retrieveAllDigestss(this.digestTypes[0].key);
+    this.retrieveAllDigestss();
   }
 
-  public clear(type?:string): void {
+  public clear(): void {
     this.page = 1;
     this.links = {};
     this.infiniteId += 1;
     this.digests = [];
-    this.retrieveAllDigestss(type);
+    this.retrieveAllDigestss();
   }
 
-  public reset(type?:string): void {
+  public reset(): void {
     this.page = 1;
     this.infiniteId += 1;
     this.digests = [];
-    this.retrieveAllDigestss(type);
+    this.retrieveAllDigestss();
   }
 
- 
-
-  public retrieveAllDigestss(type?:string): void {
+  public retrieveAllDigestss(): void {
     this.isFetching = true;
     const paginationQuery = {
       page: this.page - 1,
@@ -68,11 +58,6 @@ export default class Digests extends mixins(JhiDataUtils) {
       .retrieve(paginationQuery)
       .then(
         res => {
-          res.data.forEach(el => {el.extend = false});
-          if(type){
-            res.data = res.data.filter(item => item.type == type);
-          }
-        
           if (res.data && res.data.length > 0) {
             for (let i = 0; i < res.data.length; i++) {
               this.digests.push(res.data[i]);

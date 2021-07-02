@@ -29,7 +29,7 @@ const PublicNoticeUpdate = () => import('@/entities/public-notice/public-notice-
 // prettier-ignore
 const PublicNoticeDetails = () => import('@/entities/public-notice/public-notice-details.vue');
 // prettier-ignore
-const Videos = () => import('@/entities/videos/videos.vue'); 
+const Videos = () => import('@/entities/videos/videos.vue');
 // prettier-ignore
 const VideosUpdate = () => import('@/entities/videos/videos-update.vue');
 // prettier-ignore
@@ -41,11 +41,17 @@ const DailyVersesUpdate = () => import('@/entities/daily-verses/daily-verses-upd
 // prettier-ignore
 const DailyVersesDetails = () => import('@/entities/daily-verses/daily-verses-details.vue');
 // prettier-ignore
+// prettier-ignore
+const Videos = () => import('@/entities/videos/videos.vue');
+// prettier-ignore
+const VideosUpdate = () => import('@/entities/videos/videos-update.vue');
+// prettier-ignore
+const VideosDetails = () => import('@/entities/videos/videos-details.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
   {
-  path: '/friends',
+    path: '/friends',
     name: 'Friends',
     component: Friends,
     meta: { authorities: [Authority.USER] },

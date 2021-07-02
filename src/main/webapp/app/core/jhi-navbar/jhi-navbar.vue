@@ -98,7 +98,7 @@
               <span v-text="$t('global.menu.admin.database')">Database</span>
             </b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-item-dropdown id="languagesnavBarDropdown" right v-if="languages && Object.keys(languages).length > 1">
+          <b-nav-item-dropdown id="languagesnavBarDropdown" right xxx-v-if="languages && Object.keys(languages).length > 1">
             <span slot="button-content">
               <font-awesome-icon icon="flag" />
               <span class="no-bold" v-text="$t('global.menu.language')">Language</span>
@@ -125,11 +125,17 @@
               <font-awesome-icon icon="user" />
               <span class="no-bold" v-text="$t('global.menu.account.main')"> Account </span>
             </span>
-            <b-dropdown-item data-cy="settings" to="/account/settings" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+            <b-dropdown-item data-cy="settings" to="/account/settings" tag="b-dropdown-item" xxx-v-if="authenticated" active-class="active">
               <font-awesome-icon icon="wrench" />
               <span v-text="$t('global.menu.account.settings')">Settings</span>
             </b-dropdown-item>
-            <b-dropdown-item data-cy="passwordItem" to="/account/password" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+            <b-dropdown-item
+              data-cy="passwordItem"
+              to="/account/password"
+              tag="b-dropdown-item"
+              xxx-v-if="authenticated"
+              active-class="active"
+            >
               <font-awesome-icon icon="lock" />
               <span v-text="$t('global.menu.account.password')">Password</span>
             </b-dropdown-item>
@@ -157,25 +163,18 @@
       </b-collapse>
     </b-navbar>
     <div class="container mt-2">
-       
-        <b-nav pills content-class="mt-0" justified >
-          <b-nav-item to="/" exact> <span class="icon-home"></span>
-            <span class="d-none d-sm-inline">&nbsp;首頁</span></b-nav-item>
-          <b-nav-item to="/dailyDigests"> <span class="icon-baguette"></span>
-           <span class="d-none d-sm-inline">&nbsp;每日靈糧 </span></b-nav-item>
-          <b-nav-item to="/videoPage"> <span class="icon-video-clip"></span>
-           <span class="d-none d-sm-inline">&nbsp;影音 </span></b-nav-item>
-          <b-nav-item to="/"> <span class="icon-book-music"></span>
-           <span class="d-none d-sm-inline">&nbsp;詩歌 </span></b-nav-item>
-          <b-nav-item to="/friends"> <span class="icon-qrcode-scan"></span>
-            <span class="d-none d-sm-inline">&nbsp;簽到</span> </b-nav-item>
-          <b-nav-item to="/public-bullhorn"> <span class="icon-home"></span>
-            <span class="d-none d-sm-inline">&nbsp;公告 </span></b-nav-item>
-          <b-nav-item to="/public-pray"> <span class="icon-home"></span>
-            <span class="d-none d-sm-inline">&nbsp;代禱</span> </b-nav-item>
-        </b-nav>
+      <b-nav pills content-class="mt-0" justified>
+        <b-nav-item to="/" exact> <span class="icon-home"></span> <span class="d-none d-sm-inline">&nbsp;首頁</span></b-nav-item>
+        <b-nav-item to="/dailyDigests">
+          <span class="icon-baguette"></span> <span class="d-none d-sm-inline">&nbsp;每日靈糧 </span></b-nav-item
+        >
+        <b-nav-item to="/videoPage"> <span class="icon-video-clip"></span> <span class="d-none d-sm-inline">&nbsp;影音 </span></b-nav-item>
+        <b-nav-item to="/"> <span class="icon-book-music"></span> <span class="d-none d-sm-inline">&nbsp;詩歌 </span></b-nav-item>
+        <b-nav-item to="/friends"> <span class="icon-qrcode-scan"></span> <span class="d-none d-sm-inline">&nbsp;簽到</span> </b-nav-item>
+        <b-nav-item to="/public-bullhorn"> <span class="icon-home"></span> <span class="d-none d-sm-inline">&nbsp;公告 </span></b-nav-item>
+        <b-nav-item to="/public-pray"> <span class="icon-home"></span> <span class="d-none d-sm-inline">&nbsp;代禱</span> </b-nav-item>
+      </b-nav>
     </div>
-   
   </div>
 </template>
 
