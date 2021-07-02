@@ -109,6 +109,14 @@
               v-model="$v.digests.prayReadVerse.$model"
             />
           </div>
+
+          <quill-editor v-model="$v.digests.content.$model"
+                    ref="myQuillEditor"
+                    :options="editorOption">
+          </quill-editor>
+         <!-- @blur="onEditorBlur($event)"
+              @focus="onEditorFocus($event)"
+              @ready="onEditorReady($event)" -->
           <div class="form-group">
             <label class="form-control-label" v-text="$t('churchApp.digests.content')" for="digests-content">Content</label>
             <textarea

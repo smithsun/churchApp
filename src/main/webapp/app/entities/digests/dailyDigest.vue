@@ -1,16 +1,19 @@
 <template>
   <div>
     <h2 id="page-heading" data-cy="DigestsHeading">
-      <span v-text="$t('churchApp.digests.home.title')" id="digests-heading">每日靈糧</span>
-      <span>
-        <b-button-group>
-            <b-button v-for="digestType in digestTypes" :key="digestType.key"
-               :pressed.sync="digestType.state" 
-                @click="reset(digestType.key)"
-            >{{digestType.value}}</b-button>
-        </b-button-group>
-     </span>
-      <div class="d-flex justify-content-end">
+    
+      <div class="d-flex justify-content-between">
+        <div> 
+          <span v-text="$t('churchApp.digests.home.title')" id="digests-heading">每日靈糧</span>
+          <span>
+            <b-button-group>
+                <b-button v-for="digestType in digestTypes" :key="digestType.key"
+                  :pressed.sync="digestType.state" 
+                    @click="reset(digestType.key)"
+                >{{digestType.value}}</b-button>
+            </b-button-group>
+          </span>
+        </div>
         <!-- <button class="btn btn-info mr-2" v-on:click="handleSyncList" :disabled="isFetching">
           <font-awesome-icon icon="sync" :spin="isFetching"></font-awesome-icon>
           <span v-text="$t('churchApp.digests.home.refreshListLabel')">Refresh List</span>
@@ -20,10 +23,10 @@
             @click="navigate"
             id="jh-create-entity"
             data-cy="entityCreateButton"
-            class="btn btn-primary jh-create-entity create-digests"
-          >
-            <font-awesome-icon icon="plus"></font-awesome-icon>
-            <span v-text="$t('churchApp.digests.home.createLabel')"> Create a new Digests </span>
+            class="btn btn-primary jh-create-entity create-digests">
+            <span class="icon-plus"></span>
+            <!-- <font-awesome-icon icon="plus"></font-awesome-icon>
+            <span v-text="$t('churchApp.digests.home.createLabel')"> Create a new Digests </span> -->
           </button>
         </router-link>
       </div>
@@ -50,14 +53,19 @@
 
         <div>{{ digests.prayReadVerse }}</div>
         <div class="card"> 
-            {{digests.content.length}}
-            <div v-if="digests.content.length<250"> {{ digests.content}}</div>
-            <div v-if="digests.content.length > 250 && !digests.extend" >{{ digests.content.substring(0,250)+".." }}
-                <span @click="digests.extend = true"> ［更多］</span>
-            </div>
-            <div v-if="digests.content.length > 250 && digests.extend" >{{ digests.content}}
-                <span @click="digests.extend = false"> ［縮合]</span>
-            </div>
+          <pre class="text-truncate text-justify"> 
+                {{digests.content.length}}
+                <div v-if="digests.content.length<250" v-html="digests.content"> </div>
+                <div v-if="digests.content.length > 250 && !digests.extend"  >
+                    <span v-html="digests.content.substring(0,250)+'...'"></span>
+                    <span @click="digests.extend = true"> ...［更多］</span>
+                </div>
+                <div v-if="digests.content.length > 250 && digests.extend"   
+                    v-html="digests.content">
+                    <span @click="digests.extend = false"> ［縮合]</span>
+                </div> 
+          </pre>
+           
         <!-- <td>{{ digests.lastUpdateBy }}</td>
             <td>{{ digests.status }}</td> -->
       </div>

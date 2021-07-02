@@ -20,6 +20,12 @@ import RegisterService from './account/register/register.service';
 import UserManagementService from '@/admin/user-management/user-management.service';
 import LoginService from './account/login.service';
 import AccountService from './account/account.service';
+import VueQuillEditor from 'vue-quill-editor'
+
+// require styles
+// import 'quill/dist/quill.core.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
 
 import '../content/scss/vendor.scss';
 import TranslationService from '@/locale/translation.service';
@@ -43,6 +49,7 @@ config.initFortAwesome(Vue);
 bootstrapVueConfig.initBootstrapVue(Vue);
 Vue.use(Vue2Filters);
 Vue.use(ToastPlugin);
+Vue.use(VueQuillEditor, /* { default global options } */)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('jhi-item-count', JhiItemCountComponent);
